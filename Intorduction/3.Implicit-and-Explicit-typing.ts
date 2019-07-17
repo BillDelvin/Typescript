@@ -3,6 +3,7 @@ const arrayExample : number[] = [1,2,3,4];
 // explicit
 let example1 : boolean | number = 35;
 
+// implicit
 let example2 = arrayExample.reduce( (num1, num2) => num1 + num2 )
 
 // implicit
