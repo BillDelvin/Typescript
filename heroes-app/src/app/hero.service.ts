@@ -8,16 +8,21 @@ import {MassageService} from './massage.service';
   providedIn: 'root'
 })
 export class HeroService {
-  getHero(id: number) {
-    throw new Error("Method not implemented.");
-  }
   constructor(private massageService : MassageService) {
 
   }
 
-  getHeroes(id: number ): Observable<Hero[]> {
-    // TODO: sent the massage_after_fetching the heroes 
-    this.massageService.add('HeroService : fetched Heroes')
+  getHeroes(): Observable<Hero[]> {
+    // TODO : send the message_after_fetching the heroes
+    this.massageService.add('HeroService: fetched heroes');
     return of(HEROES);
+
   }
+
+  getHero(id: number ): Observable<Hero> {
+    // TODO: sent the massage_after_fetching the heroes 
+    this.massageService.add(`HeroService : fetched hero id=${id}`)
+    return of(HEROES.find(hero => hero.id === id));
+  }
+  
 }
