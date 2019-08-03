@@ -44,7 +44,7 @@ export class HeroService {
     }
   }
 
-  // get heroes fromo server
+  // get heroes from server
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
@@ -53,6 +53,21 @@ export class HeroService {
       )
   }
 
+  /** GET hero by id. Return `undefined` when id not found */
+  getHeroNo404<Data>(id:number): Observable<Hero>{
+    const url = `${this.heroesUrl}/?id=${id}`;
+    return this.http.get<Hero>(url)
+    .pipe(
+      map(heroes => heroes[0]), // returns a {0|1} element array
+      tap(h => {
+        const outcome = h ? `fetched` :  'did not find';
+        this.log(`${outcome} hero id=${id}`);
+      }),
+      catchError(this.handleError<Hero>(`gethero id=${id}`))
+    );
+  }
+
+  /** GET hero by id. Will 404 if id not found */
   getHero(id: number ): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
@@ -61,12 +76,15 @@ export class HeroService {
     );
   }
 
+  /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
       tap(_ => this.log(`update hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }
+
+  //////// Save methods //////////
 
   /** POST: add a new hero to the server */
   addHero(hero: Hero): Observable<Hero> {
@@ -76,6 +94,7 @@ export class HeroService {
     )
   }
 
+  /** DELETE: delete the hero from the server */
   deleteHero(hero: Hero | number): Observable<Hero> {
     const id =typeof hero === 'number' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
