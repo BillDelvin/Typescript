@@ -1,8 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import {Hero} from '../hero';
 import {HeroService} from '../hero.service';
-import { Observable } from 'rxjs';
-import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-heroes',
