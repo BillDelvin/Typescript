@@ -1,13 +1,30 @@
 <div class="container">
+  <h3>Assigment basic 2</h3>
   <p>1. Add a inptu field which updates a property ('username') via Two-Way-Binding</p>
   <p>2. Output the username property via string interpolation (in a paragrpah below input)</p>
   <p>3. add a button which may only be clicked if the username is NOT an empty string</p>
   <p>4. Upon Clicking the button, the username should be reset to an empty string </p>
-  
   <hr>
-
   <label>UserName : </label>
   <input type="text" class="form-control" [(ngModel)]="UserName" >
   <p>{{ UserName }}</p>
   <button [disabled]="UserName === ''" (click)=" UserName = ''" >Reset User</button>
+  <br>
+  <hr>
+  <br>
+  <h3>Assigment basic 3</h3>
+  <p>1. add a button which says 'Display Details'</p>
+  <p>2. add a paragraph with any content of your choice (e.g. 'Secret Password= tuna')</p>
+  <p>3. Toggle the displaying of that paragraph with the button created in the first app</p>
+  <p>4. Log all button click in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</p>
+  <p>5. Starting at he 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass) </p>
+  <hr>
+  <!-- <button class="btn btn-primary" (click)="showSecret = !showSecret" >Display Button</button> -->
+  <button class="btn btn-primary" (click)="onToggleDetails()" >Display Button</button>
+  <p *ngIf="showSecret" >Secret Password= tuna</p>
+  <div *ngFor="let logItem of log; let i = index" 
+    [ngStyle]="{backgroundColor : i >= 4 ? 'blue' : 'transparent'}" 
+    [ngClass]="{'white-text': i >= 4 }">
+    {{ logItem }}
+  </div>
 </div>
