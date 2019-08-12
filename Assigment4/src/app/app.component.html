@@ -12,7 +12,14 @@
   </ol>
   <hr>
   <br>
-  
+  <div class="row">
+    <div class="col-md-12">
+      <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
+    </div>
+    <div class="col-md-12">
+      <app-odd *ngFor="oddNumber of oddNumbers" ></app-odd>
+    </div>
+  </div>
 </div>
 
 
