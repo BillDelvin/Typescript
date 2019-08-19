@@ -33,7 +33,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
       { path: 'shopping-list', component: ShoppingListComponent }
     ])
   ],
-  providers: [RecipeService],
+  providers: [RecipeService, ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
