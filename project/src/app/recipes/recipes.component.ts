@@ -8,7 +8,7 @@ import { RecipeService } from './recipe.service';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  selectedRecipe: Recipe;
+  recipe: Recipe;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -16,7 +16,7 @@ export class RecipesComponent implements OnInit {
     this.recipeService.recipeSelected
     .subscribe(
      (recipe : Recipe) => {
-        this.selectedRecipe = recipe;
+        this.recipe = recipe;
      });
   }
 }
