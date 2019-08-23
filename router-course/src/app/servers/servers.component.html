@@ -2,11 +2,11 @@
   <div class="col-md-6">
     <ul class="list-group">
       <a 
-        [routerLink]="['/servers', servers.id]" 
+        *ngFor="let server of servers"
+        [routerLink]="['/servers', server.id]" 
         [queryParams]="{allowEdit: '1'}" 
         fragment="loading" href="#" 
-        class="list-group-item" 
-        *ngFor="let server of servers">
+        class="list-group-item">
         {{server.name}}
       </a>
     </ul>
