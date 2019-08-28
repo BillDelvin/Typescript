@@ -1,12 +1,10 @@
-import { setTimeout } from 'timers';
-
 export class AuthService{
     loggedIn = false;
 
     isAuthenticated(){
         const promise = new Promise(
             (resolve, reject)=>{
-                setTimeout(()=>{
+                setTimeout( ()=>{
                     resolve(this.loggedIn)
                 }, 800);
             }
